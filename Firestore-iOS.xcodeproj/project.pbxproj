@@ -18,6 +18,7 @@
 		B8F0FDBA232DC49C004651BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F0FDB9232DC49C004651BA /* LoginViewController.swift */; };
 		B8F0FDBC232DC4B5004651BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F0FDBB232DC4B5004651BA /* HomeViewController.swift */; };
 		B8F21F34232DEF850038065B /* FormUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F21F33232DEF850038065B /* FormUtilities.swift */; };
+		F44225652384E66E00EAC913 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44225642384E66E00EAC913 /* User.swift */; };
 		F4450D072372589C0079DDD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4450D062372589C0079DDD3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		B8F0FDBB232DC4B5004651BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B8F21F33232DEF850038065B /* FormUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUtilities.swift; sourceTree = "<group>"; };
 		E22ECE2A0CCD5A17CB2DFE8F /* Pods-Firestore-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firestore-iOS.release.xcconfig"; path = "Target Support Files/Pods-Firestore-iOS/Pods-Firestore-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		F44225642384E66E00EAC913 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4450D062372589C0079DDD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 		B821852822EA6A9E00FFDDA9 /* Firestore-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F44225632384E65D00EAC913 /* Model */,
 				B8F21F32232DEF2A0038065B /* Helpers */,
 				B8F0FDBD232DC4C4004651BA /* ViewControllers */,
 				B821852922EA6A9E00FFDDA9 /* AppDelegate.swift */,
@@ -120,6 +123,14 @@
 				B80545B5232E097200864E6C /* Constants.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F44225632384E65D00EAC913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F44225642384E66E00EAC913 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 				B8F0FDBC232DC4B5004651BA /* HomeViewController.swift in Sources */,
 				B8F0FDBA232DC49C004651BA /* LoginViewController.swift in Sources */,
 				B8F0FDB8232DC488004651BA /* SignupViewController.swift in Sources */,
+				F44225652384E66E00EAC913 /* User.swift in Sources */,
 				B80545B6232E097200864E6C /* Constants.swift in Sources */,
 				B821852C22EA6A9E00FFDDA9 /* ViewController.swift in Sources */,
 				B821852A22EA6A9E00FFDDA9 /* AppDelegate.swift in Sources */,
