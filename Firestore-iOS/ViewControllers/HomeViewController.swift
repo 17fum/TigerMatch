@@ -109,6 +109,15 @@ class HomeViewController: UIViewController {
 
     }
     
+    // MARK: IBActions
+    @IBAction func noButtonTapped() {
+        kolodaView?.swipe(.left)
+    }
+
+    @IBAction func yesButtonTapped() {
+        kolodaView?.swipe(.right)
+    }
+    
     @IBAction func logoutTapped(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -165,15 +174,24 @@ extension HomeViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let image = UIImageView()
+        let view = UIImageView(image: UIImage(named: "defaultImage"))
+        view.layer.masksToBounds = true
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.darkGray.cgColor
+        view.layer.cornerRadius = 20
+      
         guard let imageUrl = users[index].profileImageUrl else {
-            return UIImageView(image: UIImage(named: "defaultImage"))
+            return view
         }
         
-        image.downloaded(from: imageUrl)
-        return image
-        
+        view.downloaded(from: imageUrl) 
+        return view
     }
+    
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
+
 }
 
 // Logic for background updating of images in the KoladaView
