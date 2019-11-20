@@ -55,8 +55,8 @@ class HomeViewController: UIViewController {
                 if let user = User(dictionary: document.data(), id: document.documentID) {
                     return user
                 } else {
-                    fatalError("Unable to initialize type \(User.self) with dictionary \(document.data())")
-                    //return User(id: "", email: "", profileImageUrl: "", firstName: "", lastName: "", description: "")
+                    //fatalError("Unable to initialize type \(User.self) with dictionary \(document.data())")
+                    return User(id: "", email: "", profileImageUrl: "", firstName: "", lastName: "", description: "")
                 }
             }
              
@@ -179,12 +179,20 @@ extension HomeViewController: KolodaViewDataSource {
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.darkGray.cgColor
         view.layer.cornerRadius = 20
+        
+        let fullName = UILabel(frame: CGRect(x: 0, y: 260, width: 300, height: 30))
+        fullName.textColor = UIColor.black
+        fullName.backgroundColor = UIColor.white
+        fullName.text = "   " + users[index].firstName! + " " + users[index].lastName!
+        fullName.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        view.addSubview(fullName)
       
         guard let imageUrl = users[index].profileImageUrl else {
             return view
         }
         
-        view.downloaded(from: imageUrl) 
+        view.downloaded(from: imageUrl)
+        view.contentMode = .scaleAspectFill
         return view
     }
     
