@@ -187,9 +187,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
 
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63E-2w-YLC" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="-50" y="256" width="300" height="300"/>
-
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcC-6u-gtN">
                                 <rect key="frame" x="37.666666666666657" y="596" width="300" height="50"/>
                                 <subviews>
