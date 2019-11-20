@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rbw-zT-jJI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rbw-zT-jJI">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -186,6 +186,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcC-6u-gtN">
                                 <rect key="frame" x="37.666666666666657" y="596" width="300" height="50"/>
                                 <subviews>
@@ -251,12 +252,20 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63E-2w-YLC" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="32" y="200" width="300" height="300"/>
+
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="HGi-Y3-d7b"/>
                                     <constraint firstAttribute="width" constant="300" id="Ovl-wK-x2E"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQf-7H-qh9">
+                                <rect key="frame" x="291" y="718" width="44" height="30"/>
+                                <state key="normal" title="Profile"/>
+                                <connections>
+                                    <segue destination="7Xu-cK-9tP" kind="show" id="1fd-3m-rad"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -267,8 +276,13 @@
                             <constraint firstItem="VG5-o0-lBr" firstAttribute="bottom" secondItem="DbT-YY-WUi" secondAttribute="bottom" constant="-30" id="F7s-Oo-IcJ"/>
                             <constraint firstItem="vcC-6u-gtN" firstAttribute="centerX" secondItem="DbT-YY-WUi" secondAttribute="centerX" id="N9L-rS-AOO"/>
                             <constraint firstItem="ni1-gL-Fjd" firstAttribute="top" secondItem="DbT-YY-WUi" secondAttribute="top" constant="30" id="RZV-GH-GSD"/>
+                            <constraint firstItem="DbT-YY-WUi" firstAttribute="bottom" secondItem="ZQf-7H-qh9" secondAttribute="bottom" constant="30" id="Uil-vN-R0d"/>
                             <constraint firstItem="DbT-YY-WUi" firstAttribute="trailing" secondItem="ni1-gL-Fjd" secondAttribute="trailing" constant="40" id="lX3-DG-Hx8"/>
+
+                            <constraint firstItem="DbT-YY-WUi" firstAttribute="trailing" secondItem="ZQf-7H-qh9" secondAttribute="trailing" constant="40" id="xUz-CA-XDX"/>
+
                             <constraint firstItem="vcC-6u-gtN" firstAttribute="width" secondItem="63E-2w-YLC" secondAttribute="width" id="qJ1-Vh-yXB"/>
+
                             <constraint firstItem="VG5-o0-lBr" firstAttribute="leading" secondItem="DbT-YY-WUi" secondAttribute="leading" constant="40" id="y1W-6c-MxN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DbT-YY-WUi"/>
@@ -403,6 +417,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJg-KX-fed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2045.5999999999999" y="490.64039408866995"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="lG6-Zy-Ile">
+            <objects>
+                <viewController id="7Xu-cK-9tP" customClass="OnboardingViewController" customModule="Tiger_Match" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ydR-g7-KpL" customClass="Onboarding">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IE0-kQ-D9t">
+                                <rect key="frame" x="140.66666666666666" y="340" width="94" height="30"/>
+                                <state key="normal" title="Upload Photo"/>
+                                <connections>
+                                    <action selector="uploadImageTapped:" destination="7Xu-cK-9tP" eventType="touchUpInside" id="aSR-o4-vOe"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YCK-Nb-EbG">
+                                <rect key="frame" x="62.666666666666657" y="69" width="249.99999999999997" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="4e7-NF-SsV"/>
+                                    <constraint firstAttribute="height" constant="250" id="K61-Ej-45t"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IE0-kQ-D9t" firstAttribute="centerX" secondItem="kch-8w-YW7" secondAttribute="centerX" id="DQ9-7Q-eUa"/>
+                            <constraint firstItem="YCK-Nb-EbG" firstAttribute="top" secondItem="kch-8w-YW7" secondAttribute="top" constant="69" id="FRl-sP-fki"/>
+                            <constraint firstItem="IE0-kQ-D9t" firstAttribute="top" secondItem="YCK-Nb-EbG" secondAttribute="bottom" constant="21" id="eeW-gS-IG1"/>
+                            <constraint firstItem="YCK-Nb-EbG" firstAttribute="centerX" secondItem="kch-8w-YW7" secondAttribute="centerX" id="ztq-Ey-bIE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kch-8w-YW7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="I94-ou-RwP"/>
+                    <connections>
+                        <outlet property="userPhoto" destination="YCK-Nb-EbG" id="cQq-4U-Ojj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HHE-9y-Wuy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3848.8000000000002" y="138.91625615763547"/>
         </scene>
         <!--InitialViewController-->
         <scene sceneID="PEu-0V-VP0">
