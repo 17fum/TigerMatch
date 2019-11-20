@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24C1CC5A432D5CE496167387 /* Pods_Firestore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D2966269BA67BAAD838729 /* Pods_Firestore_iOS.framework */; };
+		A142FC30238519BA00A367F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A142FC2F238519B900A367F0 /* User.swift */; };
 		A17987A92384DECD002BB7A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17987A82384DECD002BB7A1 /* GoogleService-Info.plist */; };
 		A17987AD2384F381002BB7A1 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17987AC2384F381002BB7A1 /* CustomOverlayView.swift */; };
 		A17987B12384F822002BB7A1 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17987B02384F822002BB7A1 /* CustomOverlayView.xib */; };
@@ -21,12 +22,12 @@
 		B8F0FDBA232DC49C004651BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F0FDB9232DC49C004651BA /* LoginViewController.swift */; };
 		B8F0FDBC232DC4B5004651BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F0FDBB232DC4B5004651BA /* HomeViewController.swift */; };
 		B8F21F34232DEF850038065B /* FormUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F21F33232DEF850038065B /* FormUtilities.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		16FCD82E7680C6403AA898B3 /* Pods-Firestore-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firestore-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Firestore-iOS/Pods-Firestore-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		33D2966269BA67BAAD838729 /* Pods_Firestore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firestore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A142FC2F238519B900A367F0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A17987A82384DECD002BB7A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A17987AC2384F381002BB7A1 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		A17987B02384F822002BB7A1 /* CustomOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		B8F0FDBB232DC4B5004651BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B8F21F33232DEF850038065B /* FormUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUtilities.swift; sourceTree = "<group>"; };
 		E22ECE2A0CCD5A17CB2DFE8F /* Pods-Firestore-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firestore-iOS.release.xcconfig"; path = "Target Support Files/Pods-Firestore-iOS/Pods-Firestore-iOS.release.xcconfig"; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 		F44225632384E65D00EAC913 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F44225642384E66E00EAC913 /* User.swift */,
+				A142FC2F238519B900A367F0 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 				B8F0FDBC232DC4B5004651BA /* HomeViewController.swift in Sources */,
 				B8F0FDBA232DC49C004651BA /* LoginViewController.swift in Sources */,
 				B8F0FDB8232DC488004651BA /* SignupViewController.swift in Sources */,
-				F44225652384E66E00EAC913 /* User.swift in Sources */,
+				A142FC30238519BA00A367F0 /* User.swift in Sources */,
 				B80545B6232E097200864E6C /* Constants.swift in Sources */,
 				B821852C22EA6A9E00FFDDA9 /* ViewController.swift in Sources */,
 				B821852A22EA6A9E00FFDDA9 /* AppDelegate.swift in Sources */,

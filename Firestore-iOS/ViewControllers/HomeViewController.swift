@@ -179,6 +179,13 @@ extension HomeViewController: KolodaViewDataSource {
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.darkGray.cgColor
         view.layer.cornerRadius = 20
+        
+        let fullName = UILabel(frame: CGRect(x: 0, y: 260, width: 300, height: 30))
+        fullName.textColor = UIColor.black
+        fullName.backgroundColor = UIColor.white
+        fullName.text = "   " + users[index].firstName! + " " + users[index].lastName!
+        fullName.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        view.addSubview(fullName)
       
         guard let imageUrl = users[index].profileImageUrl else {
             return view
