@@ -124,6 +124,8 @@ class SignupViewController: UIViewController {
                             if err != nil {
                                 self.showError("Error verifying user. Please try again later!")
                             }
+                            
+                            print("success")
                         }
                         
                         let db = Firestore.firestore()
@@ -134,7 +136,7 @@ class SignupViewController: UIViewController {
                         UserDefaults.standard.synchronize()
                         
                         // save first and lastname to users db
-                        db.collection("users").document(result!.user.uid as String).setData(["firstName": firstName, "lastName": lastName, "uid": result!.user.uid], completion: { (error) in
+                        db.collection("users").document(result!.user.uid as String).setData(["firstName": firstName, "lastName": lastName, "uid": result!.user.uid, "description": " ", "profileImageUrl": " ", "email": email], completion: { (error) in
                             // something went wrong when saving first and last name
                             if error != nil {
                                 self.showError("User data couldn't be saved properly")

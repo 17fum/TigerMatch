@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import Firebase
 import Koloda
 
@@ -16,9 +17,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var kolodaView: KolodaView!
+    private var listener : ListenerRegistration!
     
-    var images = ["cat-1", "cat-2", "cat-3"]
-    
+    private var documents: [DocumentSnapshot] = []
+    public var users: [User] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +33,50 @@ class HomeViewController: UIViewController {
         // Initiate the kolodaView
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        // Begin query for users
+        self.query = baseQuery()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Logic for querying users.
+        self.listener =  query?.addSnapshotListener { (documents, error) in
+            guard let snapshot = documents else {
+                print("Error fetching documents results: \(error!)")
+                return
+            }
+             
+            let results = snapshot.documents.map { (document) -> User in
+                
+                print(document.data())
+                
+                if let user = User(dictionary: document.data(), id: document.documentID) {
+                    return user
+                } else {
+                    fatalError("Unable to initialize type \(User.self) with dictionary \(document.data())")
+                    //return User(id: "", email: "", profileImageUrl: "", firstName: "", lastName: "", description: "")
+                }
+            }
+             
+            self.users = results
+            self.documents = snapshot.documents
+            self.kolodaView.reloadData()
+            
+        }
+    }
+    
+    fileprivate func baseQuery() -> Query {
+        return Firestore.firestore().collection("users").limit(to: 50)
+    }
+     
+    fileprivate var query: Query? {
+        didSet {
+            if let listener = listener {
+                listener.remove()
+            }
+        }
     }
     
     // get the signed-in user's first name using their uid from Cloud Firestore
@@ -99,7 +145,10 @@ class HomeViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.listener.remove()
+    }
 
 }
 
@@ -117,7 +166,7 @@ extension HomeViewController: KolodaViewDelegate {
 extension HomeViewController: KolodaViewDataSource {
 
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-        return images.count
+        return users.count
     }
 
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -125,15 +174,44 @@ extension HomeViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        let view = UIImageView(image: UIImage(named: images[index]))
+        let view = UIImageView(image: UIImage(named: "defaultImage"))
         view.layer.masksToBounds = true
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.darkGray.cgColor
         view.layer.cornerRadius = 20
+      
+        guard let imageUrl = users[index].profileImageUrl else {
+            return view
+        }
+        
+        view.downloaded(from: imageUrl) 
         return view
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
+
+}
+
+// Logic for background updating of images in the KoladaView
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+        }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
     }
 }
