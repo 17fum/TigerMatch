@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login or Sign Up-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tiger_Match" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,16 +50,25 @@
                                     <constraint firstItem="Odg-aE-yAW" firstAttribute="height" secondItem="YE8-zb-J7G" secondAttribute="height" id="MCz-fX-Lf5"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TigerMatch_Text" translatesAutoresizingMaskIntoConstraints="NO" id="hOn-HQ-lxz">
+                                <rect key="frame" x="-1809.6666666666667" y="140" width="3994.3333333333339" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="gI0-Iw-8J6"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Odg-aE-yAW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hOn-HQ-lxz" secondAttribute="bottom" constant="200" id="0ni-Fy-3j9"/>
                             <constraint firstItem="Bni-IZ-Sxg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="7uS-JF-zsV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bni-IZ-Sxg" secondAttribute="bottom" constant="40" id="L7S-iL-y7w"/>
+                            <constraint firstItem="hOn-HQ-lxz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="S8c-b1-3u1"/>
+                            <constraint firstItem="hOn-HQ-lxz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="T6Y-wu-bfc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bni-IZ-Sxg" secondAttribute="trailing" constant="40" id="rmt-WM-9FJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login or Sign Up" largeTitleDisplayMode="always" id="Qhs-IE-F8r">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Qhs-IE-F8r">
                         <barButtonItem key="backBarButtonItem" title="Back" id="DWE-LO-srQ"/>
                     </navigationItem>
                     <connections>
@@ -352,4 +361,7 @@
             <point key="canvasLocation" x="-29" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TigerMatch_Text" width="1997" height="1137"/>
+    </resources>
 </document>
