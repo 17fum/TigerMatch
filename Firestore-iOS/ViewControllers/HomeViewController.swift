@@ -155,7 +155,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
-        print("Ran out of cards")
+        titleLabel.text = "No More Users Left!"
     }
 
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
