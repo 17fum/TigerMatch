@@ -147,7 +147,7 @@ class SignupViewController: UIViewController {
 //                            self.showError(checker!)
 //                        }
 //                        else{
-                           // self.transitionToHome()
+                            self.transitionToHome()
 //                        }
                     }
                 }
