@@ -189,10 +189,6 @@ extension HomeViewController: KolodaViewDelegate {
                         
         case .right:
             
-            print("swipedRight")
-            print(users[index].id!)
-            print(currentUser)
-            
             UserService.swipedRightOnUser(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
             
             checkForMatch(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
