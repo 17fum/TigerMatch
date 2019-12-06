@@ -74,7 +74,7 @@ extension OnboardingViewController: UIImagePickerControllerDelegate, UINavigatio
         metaData.contentType = "image/jpg"
         self.storageRef.child(filePath).putData(data as Data, metadata: metaData){(downloadmetaData,error) in
             if let error = error {
-                self.showError(error.localizedDescription)
+                print(error.localizedDescription)
                 return
             }else{
             //store downloadURL in database
