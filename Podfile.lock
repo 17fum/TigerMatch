@@ -289,7 +289,6 @@ PODS:
   - SDWebImage (5.3.3):
     - SDWebImage/Core (= 5.3.3)
   - SDWebImage/Core (5.3.3)
-  - SendBirdSDK (3.0.161)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -300,7 +299,6 @@ DEPENDENCIES:
   - Koloda
   - MessageKit
   - SDWebImage
-  - SendBirdSDK
 
 SPEC REPOS:
   trunk:
@@ -330,7 +328,6 @@ SPEC REPOS:
     - nanopb
     - pop
     - SDWebImage
-    - SendBirdSDK
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -359,8 +356,7 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 51ab1ce3ebd20dec6665ae8ba25c928da323db41
-  SendBirdSDK: fae108b5757e21250d7cd32f4ff023075d7c06ae
 
-PODFILE CHECKSUM: 45f3314d3d744feeaa301d2c412f87a81827139c
+PODFILE CHECKSUM: 5251350d07bf4bd2faaa0b8596453639c6904150
 
 COCOAPODS: 1.8.4
