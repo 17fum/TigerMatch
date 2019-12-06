@@ -15,6 +15,7 @@ struct User{
     var firstName: String?
     var lastName: String?
     var description: String?
+    var classYear: String?
 }
  
 extension User{
@@ -23,10 +24,11 @@ extension User{
             let profileImageUrl = dictionary["profileImageUrl"] as? String,
             let firstName = dictionary["firstName"] as? String,
             let lastName = dictionary["lastName"] as? String,
-            let description = dictionary["description"] as? String
+            let description = dictionary["description"] as? String,
+            let classYear = dictionary["classYear"] as? String
             
             else { return nil }
          
-        self.init(id: id, email: email, profileImageUrl: profileImageUrl, firstName: firstName, lastName: lastName, description: description)
+        self.init(id: id, email: email, profileImageUrl: profileImageUrl, firstName: firstName, lastName: lastName, description: description, classYear: classYear)
     }
 }
