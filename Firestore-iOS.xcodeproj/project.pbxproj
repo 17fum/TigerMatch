@@ -11,6 +11,7 @@
 		A17987A92384DECD002BB7A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17987A82384DECD002BB7A1 /* GoogleService-Info.plist */; };
 		A17987AD2384F381002BB7A1 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17987AC2384F381002BB7A1 /* CustomOverlayView.swift */; };
 		A17987B12384F822002BB7A1 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17987B02384F822002BB7A1 /* CustomOverlayView.xib */; };
+		A1AB18822399CB2F000407E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AB18812399CB2F000407E7 /* ProfileViewController.swift */; };
 		B80545B6232E097200864E6C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80545B5232E097200864E6C /* Constants.swift */; };
 		B821852A22EA6A9E00FFDDA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821852922EA6A9E00FFDDA9 /* AppDelegate.swift */; };
 		B821852C22EA6A9E00FFDDA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821852B22EA6A9E00FFDDA9 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		A17987A82384DECD002BB7A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A17987AC2384F381002BB7A1 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		A17987B02384F822002BB7A1 /* CustomOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomOverlayView.xib; sourceTree = "<group>"; };
+		A1AB18812399CB2F000407E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B80545B5232E097200864E6C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B821852622EA6A9E00FFDDA9 /* Tiger Match.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tiger Match.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B821852922EA6A9E00FFDDA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				B8F0FDB7232DC488004651BA /* SignupViewController.swift */,
 				B8F0FDB9232DC49C004651BA /* LoginViewController.swift */,
 				B8F0FDBB232DC4B5004651BA /* HomeViewController.swift */,
+				A1AB18812399CB2F000407E7 /* ProfileViewController.swift */,
 				F442256B23851E3D00EAC913 /* OnboardingViewController.swift */,
 				A17987AC2384F381002BB7A1 /* CustomOverlayView.swift */,
 				A17987B02384F822002BB7A1 /* CustomOverlayView.xib */,
@@ -265,6 +268,7 @@
 				B8F0FDBA232DC49C004651BA /* LoginViewController.swift in Sources */,
 				B8F0FDB8232DC488004651BA /* SignupViewController.swift in Sources */,
 				B80545B6232E097200864E6C /* Constants.swift in Sources */,
+				A1AB18822399CB2F000407E7 /* ProfileViewController.swift in Sources */,
 				B821852C22EA6A9E00FFDDA9 /* ViewController.swift in Sources */,
 				F442256C23851E3E00EAC913 /* OnboardingViewController.swift in Sources */,
 				F442256E23851E4700EAC913 /* User.swift in Sources */,

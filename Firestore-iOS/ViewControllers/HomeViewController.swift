@@ -159,8 +159,17 @@ extension HomeViewController: KolodaViewDelegate {
     }
 
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        print("Hello")
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
+        
+        profileVC.user = users[index]
+
+        profileVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        profileVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+
+        self.present(profileVC, animated: true, completion: nil)
     }
+    
 }
 
 extension HomeViewController: KolodaViewDataSource {
@@ -170,7 +179,7 @@ extension HomeViewController: KolodaViewDataSource {
     }
 
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
-        return .fast
+        return .default
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
@@ -199,7 +208,7 @@ extension HomeViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
-
+    
 }
 
 // Logic for background updating of images in the KoladaView
