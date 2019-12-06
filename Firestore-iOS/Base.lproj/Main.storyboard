@@ -273,8 +273,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjH-xS-r8N">
-                                <rect key="frame" x="286" y="718" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="262" y="718" width="70" height="30"/>
+                                <state key="normal" title="Messages"/>
                                 <connections>
                                     <action selector="transitionToMessages:" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="hlW-gQ-ZVo"/>
                                 </connections>

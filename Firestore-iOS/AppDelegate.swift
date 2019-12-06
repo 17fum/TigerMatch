@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SendBirdSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        SBDMain.initWithApplicationId(Constants.sendBirdID)
         // Override point for customization after application launch.
         return true
     }
