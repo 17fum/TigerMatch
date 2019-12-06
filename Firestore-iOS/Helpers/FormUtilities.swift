@@ -34,7 +34,9 @@ class FormUtilities {
             
             if results.count == 0
             {
-                returnValue = false
+                if Constants.debug == false {
+                    returnValue = false
+                }
             }
             
         } catch let error as NSError {

@@ -21,13 +21,15 @@ class HomeViewController: UIViewController {
     
     private var documents: [DocumentSnapshot] = []
     public var users: [User] = []
+    public var currentUser: User?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // add user's first name to the title
-        getUserName { (name) in
-            self.titleLabel.text! = "Welcome, \(name)!"
+        UserService.getCurrentUser { (user) in
+            self.titleLabel.text! = "Welcome, \(user.firstName!)!"
+            self.currentUser = user
         }
         
         // Initiate the kolodaView
@@ -49,11 +51,11 @@ class HomeViewController: UIViewController {
             }
              
             let results = snapshot.documents.map { (document) -> User in
-                
-                print(document.data())
-                
+                                                
                 if let user = User(dictionary: document.data(), id: document.documentID) {
+                    
                     return user
+                    
                 } else {
                     //fatalError("Unable to initialize type \(User.self) with dictionary \(document.data())")
                     return User(id: "", email: "", profileImageUrl: "", firstName: "", lastName: "", description: "")
@@ -61,6 +63,11 @@ class HomeViewController: UIViewController {
             }
              
             self.users = results
+            
+            let userUID = UserDefaults.standard.object(forKey: "uid") as! String
+            // Removing the user instance
+            self.users.removeAll{$0.id == userUID}
+            
             self.documents = snapshot.documents
             self.kolodaView.reloadData()
             
@@ -77,36 +84,6 @@ class HomeViewController: UIViewController {
                 listener.remove()
             }
         }
-    }
-    
-    // get the signed-in user's first name using their uid from Cloud Firestore
-    func getUserName(completion: @escaping (String) -> Void){
-        
-        let db = Firestore.firestore()
-        let userUID = UserDefaults.standard.object(forKey: "uid")
-        
-        let userName = UserDefaults.standard.object(forKey: "userFirstName")
-        
-        let userInfo = db.collection("users").document(userUID as? String ?? Auth.auth().currentUser!.uid)
-        
-        // return user name from UserDefaults if it exists, otherwise get it from the database
-        if userName != nil {
-            completion(userName as! String)
-        }
-        else {
-            userInfo.getDocument{ (document, error) in
-                if let document = document, document.exists {
-                    let data = document.data() ?? nil
-                    UserDefaults.standard.set(data?["firstName"] as! String, forKey: "userFirstName")
-                    UserDefaults.standard.synchronize()
-                    completion(data?["firstName"] as! String)
-                }
-                else {
-                    print(error?.localizedDescription ?? "nil")
-                }
-            }
-        }
-
     }
     
     // MARK: IBActions
@@ -150,6 +127,39 @@ class HomeViewController: UIViewController {
         self.listener.remove()
     }
 
+    @IBAction func transitionToMessages(_ sender: Any) {
+                
+        if (currentUser) != nil {
+                        
+            let nvc = storyboard?.instantiateViewController(withIdentifier: "mainNC") as! UINavigationController
+            let vc  = storyboard?.instantiateViewController(withIdentifier: "channelsVC") as! ChannelsViewController
+            vc.currentUser = currentUser
+            nvc.pushViewController(vc, animated: true)
+            view.window?.rootViewController = nvc
+            view.window?.makeKeyAndVisible()
+            
+        }
+    }
+    
+    func checkForMatch(swiperId: String, swipedId: String) {
+        
+        UserService.checkForMatch(swiperId: swiperId, swipedId: swipedId) { (didMatch) in
+            
+            print("didMatch")
+            print(didMatch)
+            
+            if (didMatch) {
+                print("SUCCESS - MATCH MADE!")
+                print("and it was here")
+                UserService.createChannel(uid: swiperId, ouid: swipedId) { (channelWasCreated) in
+                    print("Channel was created: \(channelWasCreated)")
+                }
+            }
+            
+        }
+        
+    }
+    
 }
 
 extension HomeViewController: KolodaViewDelegate {
@@ -160,6 +170,27 @@ extension HomeViewController: KolodaViewDelegate {
 
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         print("Hello")
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        print((currentUser?.id)!)
+        print(users[index].id!)
+        
+        switch direction {
+        case .left:
+          print("swipedLeft")
+            UserService.swipedLeftOnUser(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
+                        
+        case .right:
+            print("swipedRight")
+            UserService.swipedRightOnUser(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
+            
+            checkForMatch(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
+        default:
+          break
+        }
+        
     }
 }
 
