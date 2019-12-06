@@ -1,3 +1,11 @@
+//
+//  Message.swift
+//  Firestore-iOS
+//
+//  Created by Eno Reyes on 12/5/19.
+//  Copyright © 2019 Eno Reyes. All rights reserved.
+//
+
 import Firebase
 import MessageKit
 import FirebaseFirestore
