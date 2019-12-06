@@ -12,6 +12,7 @@ target 'Firestore-iOS' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
   pod 'Koloda'
-
+  pod 'MessageKit'
+  pod 'SDWebImage'
 
 end
