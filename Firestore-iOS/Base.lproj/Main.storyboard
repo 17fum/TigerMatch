@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rbw-zT-jJI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rbw-zT-jJI">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -186,8 +186,88 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VG5-o0-lBr">
-                                <rect key="frame" x="40" y="718" width="55" height="30"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcC-6u-gtN">
+                                <rect key="frame" x="-12.666666666666657" y="983" width="400.33333333333326" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nJI-Ld-CNV"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63E-2w-YLC" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="-12.666666666666657" y="148" width="400.33333333333326" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="670" id="HGi-Y3-d7b"/>
+                                    <constraint firstAttribute="width" constant="400" id="Ovl-wK-x2E"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCy-a7-ruR">
+                                <rect key="frame" x="237" y="661" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5zf-iG-9Nx"/>
+                                    <constraint firstAttribute="width" constant="60" id="N3A-LM-LK0"/>
+                                </constraints>
+                                <state key="normal" image="swipeRight">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderColor" value="UIColor.black.cgColor"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="yesButtonTapped" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="mhc-IM-2wY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-5x-Grz">
+                                <rect key="frame" x="53" y="661" width="80" height="80"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1kN-o7-xrC"/>
+                                    <constraint firstAttribute="width" constant="60" id="HT3-bn-tPy"/>
+                                </constraints>
+                                <state key="normal" image="swipeLeft">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderColor" value="UIColor.black.cgColor"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="noButtonTapped" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="JXK-nm-1fM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IIS-5x-Grz" firstAttribute="leading" secondItem="7l8-Nu-tgY" secondAttribute="leading" constant="100" id="0JQ-9h-IEe"/>
+                            <constraint firstAttribute="trailing" secondItem="DCy-a7-ruR" secondAttribute="trailing" constant="100" id="8tE-dR-aTd"/>
+                            <constraint firstItem="63E-2w-YLC" firstAttribute="centerX" secondItem="DbT-YY-WUi" secondAttribute="centerX" id="9mS-Ln-CpY"/>
+                            <constraint firstItem="vcC-6u-gtN" firstAttribute="centerX" secondItem="DbT-YY-WUi" secondAttribute="centerX" id="N9L-rS-AOO"/>
+                            <constraint firstItem="DbT-YY-WUi" firstAttribute="bottom" secondItem="IIS-5x-Grz" secondAttribute="bottom" id="aYl-L9-3h7"/>
+                            <constraint firstItem="63E-2w-YLC" firstAttribute="top" secondItem="DbT-YY-WUi" secondAttribute="top" constant="60" id="dFZ-Jr-kNx"/>
+                            <constraint firstItem="DbT-YY-WUi" firstAttribute="bottom" secondItem="DCy-a7-ruR" secondAttribute="bottom" id="zMo-G5-VNo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DbT-YY-WUi"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Rx-SN-vhF">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="vNM-xX-75S">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VG5-o0-lBr">
+                                <rect key="frame" x="16" y="7" width="267" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" red="1" green="0.42143754758767726" blue="0.39943186061917813" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -196,112 +276,21 @@
                                     <action selector="logoutTapped:" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="6Lj-yV-tze"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="26" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ni1-gL-Fjd">
-                                <rect key="frame" x="30" y="117.99999999999999" width="305" height="38.333333333333329"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcC-6u-gtN">
-                                <rect key="frame" x="37.666666666666657" y="618" width="300" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCy-a7-ruR">
-                                        <rect key="frame" x="200" y="-15" width="80" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="5zf-iG-9Nx"/>
-                                            <constraint firstAttribute="width" constant="80" id="N3A-LM-LK0"/>
-                                        </constraints>
-                                        <state key="normal" image="swipeRight">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="40"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <real key="value" value="1.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderColor" value="UIColor.black.cgColor"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="yesButtonTapped" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="mhc-IM-2wY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-5x-Grz">
-                                        <rect key="frame" x="20" y="-15" width="80" height="80"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES" image="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="1kN-o7-xrC"/>
-                                            <constraint firstAttribute="width" constant="80" id="HT3-bn-tPy"/>
-                                        </constraints>
-                                        <state key="normal" image="swipeLeft">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="40"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <real key="value" value="1.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderColor" value="UIColor.black.cgColor"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="noButtonTapped" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="JXK-nm-1fM"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstItem="DCy-a7-ruR" firstAttribute="centerY" secondItem="vcC-6u-gtN" secondAttribute="centerY" id="1W8-yR-fPg"/>
-                                    <constraint firstItem="IIS-5x-Grz" firstAttribute="leading" secondItem="vcC-6u-gtN" secondAttribute="leading" constant="20" id="XyU-uc-tqL"/>
-                                    <constraint firstItem="DCy-a7-ruR" firstAttribute="centerY" secondItem="IIS-5x-Grz" secondAttribute="centerY" id="c3m-4m-JvS"/>
-                                    <constraint firstAttribute="height" constant="50" id="nJI-Ld-CNV"/>
-                                    <constraint firstAttribute="trailing" secondItem="DCy-a7-ruR" secondAttribute="trailing" constant="20" id="tBK-g7-z6Z"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63E-2w-YLC" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="32" y="222" width="300" height="300"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="HGi-Y3-d7b"/>
-                                    <constraint firstAttribute="width" constant="300" id="Ovl-wK-x2E"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjH-xS-r8N">
-                                <rect key="frame" x="262" y="718" width="70" height="30"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="b9Y-gU-pAr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YjH-xS-r8N">
+                                <rect key="frame" x="289" y="7" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Messages"/>
                                 <connections>
                                     <action selector="transitionToMessages:" destination="IsV-Nw-Cbb" eventType="touchUpInside" id="hlW-gQ-ZVo"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="63E-2w-YLC" firstAttribute="centerY" secondItem="DbT-YY-WUi" secondAttribute="centerY" constant="-61" id="0Hl-un-cEt"/>
-                            <constraint firstItem="ni1-gL-Fjd" firstAttribute="leading" secondItem="DbT-YY-WUi" secondAttribute="leading" constant="30" id="0bo-Ov-TqT"/>
-                            <constraint firstItem="63E-2w-YLC" firstAttribute="centerX" secondItem="DbT-YY-WUi" secondAttribute="centerX" constant="-5.5" id="9mS-Ln-CpY"/>
-                            <constraint firstItem="vcC-6u-gtN" firstAttribute="top" secondItem="63E-2w-YLC" secondAttribute="bottom" constant="96" id="DmZ-MY-o4j"/>
-                            <constraint firstItem="VG5-o0-lBr" firstAttribute="bottom" secondItem="DbT-YY-WUi" secondAttribute="bottom" constant="-30" id="F7s-Oo-IcJ"/>
-                            <constraint firstItem="DbT-YY-WUi" firstAttribute="trailing" secondItem="YjH-xS-r8N" secondAttribute="trailing" constant="43" id="Lzx-Vx-Yaq"/>
-                            <constraint firstItem="vcC-6u-gtN" firstAttribute="centerX" secondItem="DbT-YY-WUi" secondAttribute="centerX" id="N9L-rS-AOO"/>
-                            <constraint firstItem="ni1-gL-Fjd" firstAttribute="top" secondItem="DbT-YY-WUi" secondAttribute="top" constant="30" id="RZV-GH-GSD"/>
-                            <constraint firstItem="DbT-YY-WUi" firstAttribute="bottom" secondItem="YjH-xS-r8N" secondAttribute="bottom" constant="30" id="Vod-Mi-ps2"/>
-                            <constraint firstItem="DbT-YY-WUi" firstAttribute="trailing" secondItem="ni1-gL-Fjd" secondAttribute="trailing" constant="40" id="lX3-DG-Hx8"/>
-                            <constraint firstItem="vcC-6u-gtN" firstAttribute="width" secondItem="63E-2w-YLC" secondAttribute="width" id="qJ1-Vh-yXB"/>
-                            <constraint firstItem="VG5-o0-lBr" firstAttribute="leading" secondItem="DbT-YY-WUi" secondAttribute="leading" constant="40" id="y1W-6c-MxN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="DbT-YY-WUi"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3Rx-SN-vhF"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="kolodaView" destination="63E-2w-YLC" id="B14-88-UJa"/>
-                        <outlet property="logoutButton" destination="VG5-o0-lBr" id="em0-56-vbs"/>
-                        <outlet property="titleLabel" destination="ni1-gL-Fjd" id="Sge-1h-YqA"/>
+                        <outlet property="logoutButton" destination="VG5-o0-lBr" id="ueI-UU-8u6"/>
                         <segue destination="n5F-5K-jRO" kind="show" id="pk2-Ec-g8y"/>
                     </connections>
                 </viewController>

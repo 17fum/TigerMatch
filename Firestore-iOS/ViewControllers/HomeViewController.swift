@@ -14,7 +14,7 @@ import Koloda
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+//    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var kolodaView: KolodaView!
     private var listener : ListenerRegistration!
@@ -26,9 +26,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Logout", style: .done, target: self, action: #selector(self.logoutTapped(_:)))
+//        self.navigationItem.leftItemsSupplementBackButton = true
+        
         // add user's first name to the title
         UserService.getCurrentUser { (user) in
-            self.titleLabel.text! = "Welcome, \(user.firstName!)!"
             self.currentUser = user
         }
         
@@ -165,7 +167,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
-        titleLabel.text = "No More Users Left!"
+//        titleLabel.text = "No More Users Left!"
     }
 
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -216,7 +218,7 @@ extension HomeViewController: KolodaViewDataSource {
         view.layer.borderColor = UIColor.darkGray.cgColor
         view.layer.cornerRadius = 20
         
-        let fullName = UILabel(frame: CGRect(x: 0, y: 260, width: 300, height: 30))
+        let fullName = UILabel(frame: CGRect(x: 0, y: 630, width: 400, height: 30))
         fullName.textColor = UIColor.black
         fullName.backgroundColor = UIColor.white
         fullName.text = "   " + users[index].firstName! + " " + users[index].lastName!
