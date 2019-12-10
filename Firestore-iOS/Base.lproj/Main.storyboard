@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rbw-zT-jJI">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tiger_Match" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Tiger_Match" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,6 +152,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GpL-wp-yZ5"/>
                     </view>
+                    <navigationItem key="navigationItem" id="WbT-5A-gnI"/>
                     <connections>
                         <outlet property="emailInput" destination="k3q-uD-fb2" id="VOZ-ER-zwH"/>
                         <outlet property="errorLabel" destination="q6p-dP-aHm" id="hcw-b0-fZe"/>
@@ -433,6 +435,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eAZ-EI-hST"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fU7-CU-aiO"/>
                     <connections>
                         <outlet property="emailInput" destination="Lua-uZ-YSd" id="KnC-fn-HrX"/>
                         <outlet property="errorLabel" destination="WZv-UX-WeK" id="rjG-IO-ndc"/>
@@ -592,6 +595,25 @@
             </objects>
             <point key="canvasLocation" x="2805.5999999999999" y="490.64039408866995"/>
         </scene>
+        <!--Walkthrough View Controller-->
+        <scene sceneID="yDY-MY-WgA">
+            <objects>
+                <viewController id="gDN-Zt-30b" customClass="WalkthroughViewController" customModule="Tiger_Match" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hlc-6Q-cct">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ewx-Lz-5ep"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Izo-9B-GSH"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" id="IKN-XN-4n5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wpJ-rw-BLM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="127" y="139"/>
+        </scene>
         <!--InitialViewController-->
         <scene sceneID="PEu-0V-VP0">
             <objects>
@@ -607,12 +629,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dbq-B6-ksh"/>
+                        <segue destination="gDN-Zt-30b" kind="relationship" relationship="rootViewController" id="maq-5o-9uK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yea-2r-AMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-29" y="139"/>
+            <point key="canvasLocation" x="-762" y="139"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Mz3-Wy-Nvj">
