@@ -26,7 +26,7 @@ class UserService {
                 let currUser = User(dictionary: document.data()!, id: document.documentID)
                 completion(currUser!)
             } else {
-                print("Error: \(error)")
+                print("Error: \(String(describing: error))")
             }
         }
     }
@@ -54,7 +54,7 @@ class UserService {
         let userInfo = db.collection("users").document(swiperId).collection("swipedRight").document(swipedId)
         
         userInfo.setData(["id":swipedId]) { (error) in
-            print("error swiping: \(error)")
+            print("error swiping: \(String(describing: error))")
         }
         
     }
@@ -66,7 +66,7 @@ class UserService {
         
         userInfo.setData(["id":swipedId]) { (error) in
             if error != nil {
-                print("error swiping: \(error)")
+                print("error swiping: \(String(describing: error))")
             }
         }
         

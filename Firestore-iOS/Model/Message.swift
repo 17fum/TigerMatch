@@ -53,12 +53,8 @@ struct Message: MessageType {
     
     let firebaseDate = data["created"] as? Timestamp
         
-    guard let sentDate = firebaseDate!.dateValue() as? Date else {
-        
-        print("error here 1")
-        
-      return nil
-    }
+    let sentDate = firebaseDate!.dateValue()
+    
     guard let senderID = data["senderID"] as? String else {
         
         print("error here 2")

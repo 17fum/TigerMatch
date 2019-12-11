@@ -17,15 +17,15 @@ final class ChatViewController: MessagesViewController {
     private var messageListener: ListenerRegistration?
     private let user: User
     private let channel: Channel
-    
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
+    private var otherUser: User
   
-    init(user: User, channel: Channel) {
+    init(user: User, otherUser: User, channel: Channel) {
         self.user = user
         self.channel = channel
+        self.otherUser = otherUser
         super.init(nibName: nil, bundle: nil)
-        title = channel.name
     }
     
     deinit {
@@ -35,7 +35,7 @@ final class ChatViewController: MessagesViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
       override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +60,6 @@ final class ChatViewController: MessagesViewController {
           }
         }
         
-        navigationItem.largeTitleDisplayMode = .never
         
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = Constants.primary
@@ -71,8 +70,60 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+                
+        let chatImage = UIImageView(image: UIImage(named: "defaultImage"))
         
-      }
+        let navView = UIView()
+            // Create the label
+//            let titleLabel = UILabel()
+//            titleLabel.text = self.channel.name
+//            titleLabel.sizeToFit()
+//            titleLabel.center = navView.center
+//            titleLabel.textAlignment = NSTextAlignment.center
+            
+            //navigationItem.largeTitleDisplayMode = .never
+        let imageUrl = otherUser.profileImageUrl!
+        chatImage.downloaded(from: imageUrl)
+        chatImage.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        chatImage.layer.borderWidth = 1
+        chatImage.layer.borderColor = UIColor.black.cgColor
+        chatImage.layer.cornerRadius = chatImage.frame.height/2
+        chatImage.contentMode = .scaleAspectFill
+        chatImage.clipsToBounds = true
+        
+        //navView.addSubview(titleLabel)
+        navView.addSubview(chatImage)
+        
+        //titleLabel.centerYAnchor.constraint(equalTo: navView.centerYAnchor, constant: 0).isActive = true
+        //titleLabel.centerXAnchor.constraint(equalTo: navView.centerXAnchor, constant: 0).isActive = true
+        chatImage.centerYAnchor.constraint(equalTo: navView.centerYAnchor, constant: 0).isActive = true
+        chatImage.centerXAnchor.constraint(equalTo: navView.centerXAnchor, constant: 0).isActive = true
+        
+        navView.layoutSubviews()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        navView.addGestureRecognizer(tapGesture)
+        // Set the navigation bar's navigation item's titleView to the navView
+        self.navigationItem.titleView = navView
+        
+        //self.navigationItem.titleView = chatImage
+            
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
+        
+        profileVC.user = otherUser
+        profileVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        profileVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+
+        self.present(profileVC, animated: true, completion: nil)
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
     
     private func insertNewMessage(_ message: Message) {
       guard !messages.contains(message) else {
@@ -113,9 +164,6 @@ final class ChatViewController: MessagesViewController {
     
     private func save(_ message: Message) {
         
-        UserService.getUser(id: channel.otherUser!) { (otherUser) in
-            print(otherUser)
-            
             let userChannels = self.db.collection("users").document((otherUser.id)!)
               
             let reference = userChannels.collection(["channels", self.user.id!, "thread"].joined(separator: "/"))
@@ -139,7 +187,7 @@ final class ChatViewController: MessagesViewController {
             }
         }
         
-       
+        
         
         /*
         
@@ -158,8 +206,6 @@ final class ChatViewController: MessagesViewController {
          
       }
          */
-    }
-  
 }
 
 // MARK: - MessagesDisplayDelegate
@@ -188,6 +234,18 @@ extension ChatViewController: MessagesDisplayDelegate {
     // 3
     return .bubbleTail(corner, .curved)
   }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        
+        if message.sender.senderId == currentSender().senderId {
+            let imageUrl = user.profileImageUrl!
+            avatarView.downloaded(from: imageUrl)
+        } else {
+            let imageUrl = otherUser.profileImageUrl!
+            avatarView.downloaded(from: imageUrl)
+        }
+ 
+    }
 }
 
 extension ChatViewController: MessagesLayoutDelegate {
@@ -212,6 +270,10 @@ extension ChatViewController: MessagesLayoutDelegate {
     // 3
     return 0
   }
+    
+    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        return CGSize(width: 0, height: 5)
+    }
 }
 
 extension ChatViewController: MessagesDataSource {

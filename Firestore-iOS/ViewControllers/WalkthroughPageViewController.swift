@@ -32,4 +32,5 @@ class WalkthroughPageViewController: UIViewController {
         titleLabel?.text = page.name
         self.view.addSubview(titleLabel!)
     }
+
 }

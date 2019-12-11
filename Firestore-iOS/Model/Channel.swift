@@ -48,9 +48,6 @@ struct Channel {
       return nil
     }
     
-    var otherUserModel: User?
-    var userModel: User?
-    
     self.user = uid
     self.otherUser = ouid
     

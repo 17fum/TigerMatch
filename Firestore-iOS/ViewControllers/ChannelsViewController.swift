@@ -152,29 +152,25 @@ class ChannelsViewController: UITableViewController {
         }
         
     UserService.getUser(id: uid) { (userModel) in
-        if userModel != nil {
             
-            let channel = Channel(user: self.currentUser!, otherUser: userModel)
+        let channel = Channel(user: self.currentUser!, otherUser: userModel)
 
-            self.channelReference.document(uid).setData(channel.representation) { error in
-              if let e = error {
-                print("Error saving channel: \(e.localizedDescription)")
-              }
-            }
-            
-            let otherReference = self.db.collection("users").document(uid).collection("channels").document(self.currentUser!.id!)
-                        
-            let otherChannel = Channel(user: userModel, otherUser: self.currentUser!)
-
-            otherReference.setData(otherChannel.representation) { error in
-              if let e = error {
-                print("Error saving channel: \(e.localizedDescription)")
-              }
-            }
-            
-        } else {
-            print("Error querying user")
+        self.channelReference.document(uid).setData(channel.representation) { error in
+          if let e = error {
+            print("Error saving channel: \(e.localizedDescription)")
+          }
         }
+        
+        let otherReference = self.db.collection("users").document(uid).collection("channels").document(self.currentUser!.id!)
+                    
+        let otherChannel = Channel(user: userModel, otherUser: self.currentUser!)
+
+        otherReference.setData(otherChannel.representation) { error in
+          if let e = error {
+            print("Error saving channel: \(e.localizedDescription)")
+          }
+        }
+            
     }
 
   }
@@ -258,11 +254,15 @@ extension ChannelsViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let channel = channels[indexPath.row]
-    let vc = ChatViewController(user: currentUser!, channel: channel)
     
-    print(channel.otherUser)
+    UserService.getUser(id: channel.otherUser!) { (otherUser) in
+        
+        let vc = ChatViewController(user: self.currentUser!, otherUser: otherUser, channel: channel)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
-    navigationController?.pushViewController(vc, animated: true)
+    
   }
   
 }
