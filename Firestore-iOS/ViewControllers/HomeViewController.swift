@@ -126,6 +126,22 @@ class HomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.listener.remove()
     }
+    
+    func matchMade(index: Int, channel: Channel) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let matchVC = storyboard.instantiateViewController(withIdentifier: "matchVC") as! MatchedViewController
+        
+        matchVC.user = currentUser
+        matchVC.otherUser = users[index]
+        matchVC.channel = channel
+
+        matchVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        matchVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+
+        self.present(matchVC, animated: true, completion: nil)
+        
+    }
 
     @IBAction func transitionToMessages(_ sender: Any) {
                 
@@ -141,7 +157,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func checkForMatch(swiperId: String, swipedId: String) {
+    func checkForMatch(swiperId: String, swipedId: String, index: Int) {
         
         UserService.checkForMatch(swiperId: swiperId, swipedId: swipedId) { (didMatch) in
             
@@ -151,8 +167,9 @@ class HomeViewController: UIViewController {
             if (didMatch) {
                 print("SUCCESS - MATCH MADE!")
                 print("and it was here")
-                UserService.createChannel(uid: swiperId, ouid: swipedId) { (channelWasCreated) in
-                    print("Channel was created: \(channelWasCreated)")
+                UserService.createChannel(uid: swiperId, ouid: swipedId) { (channel) in
+                    print("Channel was created: \(channel)")
+                    self.matchMade(index: index, channel: channel)
                 }
             }
             
@@ -191,7 +208,7 @@ extension HomeViewController: KolodaViewDelegate {
             
             UserService.swipedRightOnUser(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
             
-            checkForMatch(swiperId: (currentUser?.id)!, swipedId: users[index].id!)
+            checkForMatch(swiperId: (currentUser?.id)!, swipedId: users[index].id!, index: index)
         default:
           break
         }

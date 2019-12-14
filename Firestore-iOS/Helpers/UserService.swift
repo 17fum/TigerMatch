@@ -94,7 +94,7 @@ class UserService {
         completion(didMatch)
         }
     
-    static func createChannel(uid: String, ouid: String, completion: @escaping (Bool) -> Void) {
+    static func createChannel(uid: String, ouid: String, completion: @escaping (Channel) -> Void) {
         
         let db = Firestore.firestore()
 
@@ -109,7 +109,6 @@ class UserService {
                     channelReference.document(ouid).setData(channel.representation) { error in
                       if let e = error {
                         print("Error saving channel: \(e.localizedDescription)")
-                        completion(false)
                       }
                     }
                     
@@ -122,11 +121,11 @@ class UserService {
                         print("Error saving channel: \(e.localizedDescription)")
                       }
                     }
+                
+                    completion(channel)
                     
                 }
         }
-        
-        completion(true)
         
     }
     
