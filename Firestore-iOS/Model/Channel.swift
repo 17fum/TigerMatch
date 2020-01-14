@@ -20,7 +20,7 @@ struct Channel {
     init(user: User, otherUser: User) {
         
         let firstName = (otherUser.firstName)!
-        id = user.id
+        id = otherUser.id
         self.name = firstName
         self.user = user.id
         self.otherUser = otherUser.id
@@ -47,9 +47,6 @@ struct Channel {
         
       return nil
     }
-    
-    var otherUserModel: User?
-    var userModel: User?
     
     self.user = uid
     self.otherUser = ouid

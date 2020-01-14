@@ -21,6 +21,7 @@ enum Pages: CaseIterable {
             return "This is page one"
         case .pageTwo:
             return "This is page two"
+        }
     }
     
     var index: Int {
@@ -31,6 +32,7 @@ enum Pages: CaseIterable {
             return 1
         case .pageTwo:
             return 2
+        }
     }
 }
 
