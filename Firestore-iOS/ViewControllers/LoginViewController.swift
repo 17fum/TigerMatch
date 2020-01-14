@@ -104,7 +104,7 @@ class LoginViewController: UIViewController {
     }
     
     func transitionToHome() {
-                
+        
         let nvc = storyboard?.instantiateViewController(withIdentifier: "mainNC") as! UINavigationController
         print(nvc)
         let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController

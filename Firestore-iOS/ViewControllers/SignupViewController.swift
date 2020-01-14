@@ -90,9 +90,11 @@ class SignupViewController: UIViewController {
         }
         
         let cleanPassword = FormUtilities.sanitizeInput(passwordInput)
+        
         if !FormUtilities.isValidPassword(cleanPassword) {
             return "Password must have 8+ characters, at least one letter and one number"
         }
+        
         return nil
     }
     
@@ -101,9 +103,10 @@ class SignupViewController: UIViewController {
         let error = validateFields()
         if error != nil {
             showError(error!)
-        }
-        // create user
-        else {
+        } else {
+            
+            
+            
             let firstName = FormUtilities.sanitizeInput(firstNameInput)
             let lastName = FormUtilities.sanitizeInput(lastNameInput)
             
@@ -157,8 +160,9 @@ class SignupViewController: UIViewController {
                 self.showError("Error - Currently we are only available for Princeton Students")
                 
             }
-            
+        
         }
+        
     }
     
     func showError(_ message: String) {
@@ -173,3 +177,4 @@ class SignupViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
 }
+

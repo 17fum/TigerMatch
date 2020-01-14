@@ -55,12 +55,14 @@ class ChannelsViewController: UITableViewController {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: channelCellIdentifier)
     
     toolbarItems = [
-      UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
+      //UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
       UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-      UIBarButtonItem(customView: toolbarLabel),
+      //UIBarButtonItem(customView: toolbarLabel),
       UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-      UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+      //UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
     ]
+    
+    navigationItem.title = currentUser?.firstName
     
     toolbarLabel.text = currentUser?.firstName
             
@@ -240,11 +242,24 @@ extension ChannelsViewController {
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 55
+    return 60
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath)
+    
+//    UserService.getUser(id: channels[indexPath.row].otherUser!) { (otherUser) in
+//
+//        let imageUrl = otherUser.profileImageUrl
+//
+//        let imageView = UIImageView()
+//
+//        imageView.downloaded(from: imageUrl!)
+//        imageView.contentMode = .scaleAspectFill
+//
+//        cell.contentView.addSubview(imageView)
+//
+//    }
     
     cell.accessoryType = .disclosureIndicator
     cell.textLabel?.text = channels[indexPath.row].name

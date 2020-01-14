@@ -31,7 +31,7 @@ class FormUtilities {
             let regex = try NSRegularExpression(pattern: emailRegEx)
             let nsString = emailAddressString as NSString
             let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
-            
+                        
             if results.count == 0
             {
                 if Constants.debug == false {
@@ -44,7 +44,7 @@ class FormUtilities {
             returnValue = false
         }
         
-        return  returnValue
+        return returnValue
     }
 
 }

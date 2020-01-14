@@ -12,6 +12,13 @@ class ProfileViewController: UIViewController {
     public var user: User?
     public var bio = UITextView()
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var classLabel: UILabel!
+    
+    @IBOutlet weak var bioTextView: UITextView!
+    
+    @IBOutlet weak var profileImage: UIImageView!
     
     override func viewDidLoad() {
         view.backgroundColor = .clear
@@ -23,15 +30,24 @@ class ProfileViewController: UIViewController {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         view.addSubview(blurEffectView) //if you have more UIViews, use an insertSubview API to place it where needed
-        bio.frame = CGRect(x: 0, y: self.view.frame.height / 8,
-                           width: self.view.frame.width, height: self.view.frame.height * (7/8))
-        var bioText = (user?.firstName)! + " " + (user?.lastName)! + "\n\n" + (user?.classYear)!
-        bioText += "\n\n\n"
-        bioText += (user?.description)!
-        bio.text = bioText
-        bio.isEditable = false
-        bio.font = .systemFont(ofSize: 36)
-        self.view.addSubview(bio)
+        
+        view.sendSubviewToBack(blurEffectView)
+
+        let name = (user?.firstName)! + " " + (user?.lastName)!
+        let classYear = (user?.classYear)!
+        let description = (user?.description)!
+        
+        if let imageUrl = user?.profileImageUrl {
+            profileImage.downloaded(from: imageUrl)
+            profileImage.contentMode = .scaleAspectFill
+        } else {
+            profileImage.image = UIImage(named: "defaultImage")
+        }
+                
+        nameLabel.text = name
+        classLabel.text = "Class of \(classYear)"
+        bioTextView.text = description
+        bioTextView.isEditable = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

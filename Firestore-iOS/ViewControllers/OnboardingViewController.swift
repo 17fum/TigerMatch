@@ -17,24 +17,61 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var bioText: UITextField!
     @IBOutlet weak var swipeButton: UIButton!
     @IBOutlet weak var userPhoto: UIImageView!
+    
     var defaultImage = "defaultImage"
     var storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+        view.addGestureRecognizer(tap)
+        
+        userPhoto.isUserInteractionEnabled = true
+        let imageTap = UITapGestureRecognizer(target: self, action: "didTapImage")
+        userPhoto.addGestureRecognizer(imageTap)
+        
         swipeButton.layer.cornerRadius = 10
         userPhoto.image = UIImage(named: defaultImage)
         hideErrorLabel()
+        
+        registerForKeyboardNotifications()
+
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func uploadImageTapped(_  sender: Any) {
+    @objc private func didTapImage() {
         let picker = UIImagePickerController()
         picker.delegate = self
         //picker.allowsEditing = true
         present(picker, animated:true, completion: nil)
-
     }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func registerForKeyboardNotifications() {
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     @IBAction func startSwipingTapped(_  sender: Any){
         if let text = bioText.text, !text.isEmpty && ((classText?.text) != nil), !text.isEmpty {
             let db = Firestore.firestore()

@@ -22,20 +22,37 @@ class MatchedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.isOpaque = false
+        view.backgroundColor = .clear
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.sendSubviewToBack(blurEffectView)
+        
         userImage.downloaded(from: user!.profileImageUrl!)
         otherUserImage.downloaded(from: otherUser!.profileImageUrl!)
         userImage.makeRounded()
         otherUserImage.makeRounded()
         
+        let name = otherUser?.firstName
+        
+        matchText.text = "You and \(name!) have liked eachother!"
+        
     }
 
     @IBAction func sendMessageTouchUpInside(_ sender: Any) {
 
-        let nvc = storyboard?.instantiateViewController(withIdentifier: "mainNC") as! UINavigationController
-        let vc  = ChatViewController(user: user!, otherUser: otherUser!, channel: channel!)
-        nvc.pushViewController(vc, animated: true)
-        view.window?.rootViewController = nvc
-        view.window?.makeKeyAndVisible()
+        if (user != nil && channel != nil && otherUser != nil) {
+                        
+            let nvc = storyboard?.instantiateViewController(withIdentifier: "mainNC") as! UINavigationController
+            let vc = ChatViewController(user: user!, otherUser: otherUser!, channel: channel!)
+            nvc.pushViewController(vc, animated: true)
+            view.window?.rootViewController = nvc
+            view.window?.makeKeyAndVisible()
+        }
         
     }
     

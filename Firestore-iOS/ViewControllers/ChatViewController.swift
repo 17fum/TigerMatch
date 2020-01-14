@@ -36,9 +36,9 @@ final class ChatViewController: MessagesViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-      override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         guard let id = channel.id else {
           navigationController?.popViewController(animated: true)
           return
@@ -47,15 +47,14 @@ final class ChatViewController: MessagesViewController {
         let userChannels = db.collection("users").document((user.id!))
         
         reference = userChannels.collection(["channels", id, "thread"].joined(separator: "/"))
-        
+
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
           guard let snapshot = querySnapshot else {
             print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
             return
           }
-                      
+                                  
           snapshot.documentChanges.forEach { change in
-                        
             self.handleDocumentChange(change)
           }
         }
@@ -122,7 +121,7 @@ final class ChatViewController: MessagesViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+
     }
     
     private func insertNewMessage(_ message: Message) {
@@ -147,19 +146,19 @@ final class ChatViewController: MessagesViewController {
     
     private func handleDocumentChange(_ change: DocumentChange) {
         
-        guard let message = Message(document: change.document) else {            
+        guard let message = Message(document: change.document) else {
             return
-      }
+        }
         
         print(message)
 
-      switch change.type {
-      case .added:
-        insertNewMessage(message)
+        switch change.type {
+        case .added:
+            insertNewMessage(message)
 
-      default:
-        break
-      }
+        default:
+            break
+        }
     }
     
     private func save(_ message: Message) {
@@ -291,13 +290,13 @@ extension ChatViewController: MessagesDataSource {
 
   // 2
   func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-    return messages.count
+        return messages.count
   }
 
   // 3
   func messageForItem(at indexPath: IndexPath,
     in messagesCollectionView: MessagesCollectionView) -> MessageType {
-            
+                
     return messages[indexPath.section]
   }
 

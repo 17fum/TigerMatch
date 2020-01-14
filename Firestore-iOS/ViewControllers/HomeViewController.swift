@@ -14,21 +14,23 @@ import Koloda
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var kolodaView: KolodaView!
     private var listener : ListenerRegistration!
     
+    @IBOutlet weak var kolodaEmptyString: UILabel!
+    
+    
     private var documents: [DocumentSnapshot] = []
     public var users: [User] = []
     public var currentUser: User?
+    private var isEmpty: Bool = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // add user's first name to the title
         UserService.getCurrentUser { (user) in
-            self.titleLabel.text! = "Welcome, \(user.firstName!)!"
             self.currentUser = user
         }
         
@@ -38,7 +40,9 @@ class HomeViewController: UIViewController {
         
         // Begin query for users
         self.query = baseQuery()
-
+        
+        self.becomeFirstResponder()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +76,9 @@ class HomeViewController: UIViewController {
             self.kolodaView.reloadData()
             
         }
+        
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
     
     fileprivate func baseQuery() -> Query {
@@ -125,6 +132,7 @@ class HomeViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.listener.remove()
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func matchMade(index: Int, channel: Channel) {
@@ -135,7 +143,7 @@ class HomeViewController: UIViewController {
         matchVC.user = currentUser
         matchVC.otherUser = users[index]
         matchVC.channel = channel
-
+        
         matchVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         matchVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
 
@@ -146,7 +154,6 @@ class HomeViewController: UIViewController {
     @IBAction func transitionToMessages(_ sender: Any) {
                 
         if (currentUser) != nil {
-                        
             let nvc = storyboard?.instantiateViewController(withIdentifier: "mainNC") as! UINavigationController
             let vc  = storyboard?.instantiateViewController(withIdentifier: "channelsVC") as! ChannelsViewController
             vc.currentUser = currentUser
@@ -182,7 +189,11 @@ class HomeViewController: UIViewController {
 extension HomeViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
-        titleLabel.text = "No More Users Left!"
+        print("out!")
+        
+        kolodaEmptyString.isHidden = false
+        isEmpty = true
+        
     }
 
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -229,15 +240,29 @@ extension HomeViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let view = UIImageView(image: UIImage(named: "defaultImage"))
         view.layer.masksToBounds = true
-        view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor.darkGray.cgColor
+        //view.layer.borderWidth = 3
+        //view.layer.borderColor = UIColor.darkGray.cgColor
         view.layer.cornerRadius = 20
         
-        let fullName = UILabel(frame: CGRect(x: 0, y: 260, width: 300, height: 30))
-        fullName.textColor = UIColor.black
-        fullName.backgroundColor = UIColor.white
+        
+        let frameHeight = kolodaView.layer.frame.height
+        let frameWidth = kolodaView.layer.frame.width
+                        
+        let fullName = UILabel(frame: CGRect(x: 0, y: frameHeight-60, width: 300, height: 30))
+        fullName.textColor = UIColor.white
         fullName.text = "   " + users[index].firstName! + " " + users[index].lastName!
-        fullName.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        fullName.font = UIFont(name:"HelveticaNeue-Bold", size: 28.0)
+                
+        let gradientView = UILabel(frame: CGRect(x: 0, y: frameHeight - 60, width: frameWidth, height: 120))
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = gradientView.bounds
+        gradient.colors = [UIColor.black.withAlphaComponent(0.0).cgColor,
+                                UIColor.black.withAlphaComponent(1.0).cgColor]
+        gradient.locations = [0.0, 1]
+        gradientView.layer.insertSublayer(gradient, at: 0)
+        
+        view.addSubview(gradientView)
         view.addSubview(fullName)
       
         guard let imageUrl = users[index].profileImageUrl else {
@@ -251,6 +276,28 @@ extension HomeViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
+    
+}
+
+extension HomeViewController {
+    
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            
+            if (isEmpty) {
+                kolodaEmptyString.isHidden = true
+                kolodaView.resetCurrentCardIndex()
+                isEmpty = false
+            }
+            
+        }
     }
     
 }
